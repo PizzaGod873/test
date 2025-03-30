@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loading...</title>
+    <script>
+        (async () => {
+            // Fetch main.html content
+            const response = await fetch("main.html");
+            const text = await response.text();
+
+            // Replace the current page's URL with about:blank
+            history.replaceState(null, "", "about:blank");
+
+            // Write the fetched content into the same page
+            document.open();
+            document.write(text);
+            document.close();
+        })();
+    </script>
+</head>
+<body>
+</body>
+</html>
