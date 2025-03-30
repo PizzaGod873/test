@@ -4,17 +4,21 @@
     <title>Loading...</title>
     <script>
         (async () => {
-            // Fetch main.html content
-            const response = await fetch("main.html");
-            const text = await response.text();
+            // This replaces the current URL without adding to the history (user can't go back)
+            const aboutWindow = window.location.replace("about:blank");
 
-            // Replace the current page's URL with about:blank
-            history.replaceState(null, "", "about:blank");
-
-            // Write the fetched content into the same page
-            document.open();
-            document.write(text);
-            document.close();
+            newWindow.document.write(`
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <title>Custom Blank Page</title>
+              </head>
+              <body>
+                <h1>Hello from JavaScript!</h1>
+                <p>This content was written dynamically.</p>
+              </body>
+              </html>
+            `);
         })();
     </script>
 </head>
